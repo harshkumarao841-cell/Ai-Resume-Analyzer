@@ -9,6 +9,7 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:5173",
         "http://127.0.0.1:5173",
+        "https://ai-resume-analyzer-dii.pages.dev",
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -19,4 +20,4 @@ app.include_router(analyze_router, prefix="/api", tags=["Resume Analysis"])
 
 @app.get("/health")
 async def health():
-    return {"status": "healthy", "port": 8000}
+    return {"status": "healthy"}
