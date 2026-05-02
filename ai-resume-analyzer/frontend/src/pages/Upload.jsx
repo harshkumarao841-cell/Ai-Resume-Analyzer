@@ -109,7 +109,7 @@ export default function Upload() {
 
   // Check if backend is alive
   useEffect(() => {
-    fetch('http://localhost:8000/health')
+    fetch('https://resume-backend-gigu.onrender.com/health')
       .then(r => r.json())
       .then(d => setBackendOnline(d.status === 'healthy'))
       .catch(() => setBackendOnline(false))

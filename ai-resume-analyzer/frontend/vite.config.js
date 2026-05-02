@@ -8,7 +8,7 @@ export default defineConfig({
     proxy: {
       // Forward /api calls to FastAPI backend — eliminates CORS issues in dev
       '/api': {
-        target: 'http://localhost:8000',
+        target: 'https://resume-backend-gigu.onrender.com',
         changeOrigin: true,
       },
     },
