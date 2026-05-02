@@ -9,6 +9,7 @@ export default defineConfig({
       // Forward /api calls to FastAPI backend — eliminates CORS issues in dev
       '/api': {
         target: 'https://resume-backend-gigu.onrender.com',
+
         changeOrigin: true,
       },
     },

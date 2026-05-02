@@ -52,8 +52,10 @@ function UploadBox({ file, onFileSelect }) {
             <span style={{ marginLeft: 'auto', color: '#22c55e', fontSize: 20 }}>✓</span>
             <button
               onClick={(e) => { e.stopPropagation(); onFileSelect(null) }}
-              style={{ background: '#f1f5f9', border: 'none', borderRadius: '50%',
-                       width: 24, height: 24, cursor: 'pointer', fontSize: 12 }}
+              style={{
+                background: '#f1f5f9', border: 'none', borderRadius: '50%',
+                width: 24, height: 24, cursor: 'pointer', fontSize: 12
+              }}
             >✕</button>
           </div>
         ) : (
@@ -86,10 +88,14 @@ function Loader({ progress }) {
       <p style={{ color: '#94a3b8', margin: '0 0 20px', fontSize: 14 }}>
         This may take a few seconds…
       </p>
-      <div style={{ width: 240, height: 6, background: '#e2e8f0', borderRadius: 3,
-                    margin: '0 auto 16px', overflow: 'hidden' }}>
-        <div style={{ height: '100%', width: `${progress}%`, background: '#22c55e',
-                      borderRadius: 3, transition: 'width 0.3s ease' }} />
+      <div style={{
+        width: 240, height: 6, background: '#e2e8f0', borderRadius: 3,
+        margin: '0 auto 16px', overflow: 'hidden'
+      }}>
+        <div style={{
+          height: '100%', width: `${progress}%`, background: '#22c55e',
+          borderRadius: 3, transition: 'width 0.3s ease'
+        }} />
       </div>
       <p style={{ fontSize: 13, color: '#94a3b8' }}>{Math.round(progress)}%</p>
     </div>
@@ -100,11 +106,11 @@ function Loader({ progress }) {
 export default function Upload() {
   const navigate = useNavigate()
 
-  const [file,          setFile]          = useState(null)
-  const [jd,            setJd]            = useState('')
-  const [loading,       setLoading]       = useState(false)
-  const [progress,      setProgress]      = useState(0)
-  const [error,         setError]         = useState('')
+  const [file, setFile] = useState(null)
+  const [jd, setJd] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [progress, setProgress] = useState(0)
+  const [error, setError] = useState('')
   const [backendOnline, setBackendOnline] = useState(null)
 
   // Check if backend is alive
@@ -133,7 +139,7 @@ export default function Upload() {
       formData.append('resume', file)
       formData.append('job_description', jd)
 
-      const response = await fetch('http://localhost:8000/api/analyze', {
+      const response = await fetch('https://resume-backend-gigu.onrender.com/api/analyze', {
         method: 'POST',
         body: formData,
       })
@@ -168,8 +174,10 @@ export default function Upload() {
 
       {/* Header */}
       <div style={{ marginBottom: 24 }}>
-        <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.1em',
-                    textTransform: 'uppercase', color: '#94a3b8', margin: '0 0 4px' }}>
+        <p style={{
+          fontSize: 11, fontWeight: 600, letterSpacing: '0.1em',
+          textTransform: 'uppercase', color: '#94a3b8', margin: '0 0 4px'
+        }}>
           Step 1 of 2
         </p>
         <h1 style={{ margin: '0 0 6px', fontSize: 28, fontWeight: 700 }}>
@@ -194,31 +202,43 @@ export default function Upload() {
       }}>
         <span>{backendOnline === null ? '⏳' : backendOnline ? '🟢' : '🔴'}</span>
         {backendOnline === null && 'Checking backend…'}
-        {backendOnline === true  && 'Backend connected — ready to analyze'}
+        {backendOnline === true && 'Backend connected — ready to analyze'}
         {backendOnline === false && 'Backend offline — start FastAPI on port 8000 first'}
       </div>
 
       {/* Upload card */}
-      <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 16,
-                    padding: '1.25rem', marginBottom: 16 }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between',
-                      alignItems: 'center', marginBottom: 12 }}>
+      <div style={{
+        background: '#fff', border: '1px solid #e2e8f0', borderRadius: 16,
+        padding: '1.25rem', marginBottom: 16
+      }}>
+        <div style={{
+          display: 'flex', justifyContent: 'space-between',
+          alignItems: 'center', marginBottom: 12
+        }}>
           <h2 style={{ margin: 0, fontSize: 14, fontWeight: 600 }}>Your Resume</h2>
-          <span style={{ fontSize: 11, background: '#f1f5f9', color: '#64748b',
-                         padding: '2px 8px', borderRadius: 10 }}>PDF · DOCX</span>
+          <span style={{
+            fontSize: 11, background: '#f1f5f9', color: '#64748b',
+            padding: '2px 8px', borderRadius: 10
+          }}>PDF · DOCX</span>
         </div>
         <UploadBox file={file} onFileSelect={setFile} />
       </div>
 
       {/* JD card */}
-      <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 16,
-                    padding: '1.25rem', marginBottom: 16 }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between',
-                      alignItems: 'center', marginBottom: 12 }}>
+      <div style={{
+        background: '#fff', border: '1px solid #e2e8f0', borderRadius: 16,
+        padding: '1.25rem', marginBottom: 16
+      }}>
+        <div style={{
+          display: 'flex', justifyContent: 'space-between',
+          alignItems: 'center', marginBottom: 12
+        }}>
           <h2 style={{ margin: 0, fontSize: 14, fontWeight: 600 }}>Job Description</h2>
-          <span style={{ fontSize: 11, padding: '2px 8px', borderRadius: 10,
-                         background: jd.length > 20 ? '#f0fdf4' : '#f1f5f9',
-                         color: jd.length > 20 ? '#15803d' : '#64748b' }}>
+          <span style={{
+            fontSize: 11, padding: '2px 8px', borderRadius: 10,
+            background: jd.length > 20 ? '#f0fdf4' : '#f1f5f9',
+            color: jd.length > 20 ? '#15803d' : '#64748b'
+          }}>
             {jd.length} chars
           </span>
         </div>
@@ -227,10 +247,12 @@ export default function Upload() {
           onChange={e => setJd(e.target.value)}
           placeholder={'Paste the full job description here…\n\ne.g. "We are looking for a Python developer with FastAPI, Docker, PostgreSQL experience…"'}
           rows={10}
-          style={{ width: '100%', background: '#f8fafc', border: '1px solid #e2e8f0',
-                   borderRadius: 12, padding: '10px 14px', fontSize: 13, lineHeight: 1.6,
-                   resize: 'none', outline: 'none', fontFamily: 'inherit', color: '#0f172a',
-                   boxSizing: 'border-box' }}
+          style={{
+            width: '100%', background: '#f8fafc', border: '1px solid #e2e8f0',
+            borderRadius: 12, padding: '10px 14px', fontSize: 13, lineHeight: 1.6,
+            resize: 'none', outline: 'none', fontFamily: 'inherit', color: '#0f172a',
+            boxSizing: 'border-box'
+          }}
         />
         <p style={{ margin: '6px 0 0', fontSize: 11, color: '#cbd5e1' }}>
           Minimum 20 characters — more detail = better analysis.
@@ -239,15 +261,19 @@ export default function Upload() {
 
       {/* Error */}
       {error && (
-        <div style={{ display: 'flex', gap: 10, padding: '12px 14px', background: '#fef2f2',
-                      border: '1px solid #fecaca', borderRadius: 12, marginBottom: 16,
-                      fontSize: 13, color: '#dc2626' }}>
+        <div style={{
+          display: 'flex', gap: 10, padding: '12px 14px', background: '#fef2f2',
+          border: '1px solid #fecaca', borderRadius: 12, marginBottom: 16,
+          fontSize: 13, color: '#dc2626'
+        }}>
           <span>⚠</span>
           <div>
             <p style={{ margin: 0 }}>{error}</p>
-            <button onClick={handleSubmit} style={{ marginTop: 6, background: 'none',
+            <button onClick={handleSubmit} style={{
+              marginTop: 6, background: 'none',
               border: 'none', color: '#dc2626', cursor: 'pointer', fontSize: 12,
-              textDecoration: 'underline', padding: 0 }}>
+              textDecoration: 'underline', padding: 0
+            }}>
               Try again →
             </button>
           </div>
