@@ -10,6 +10,7 @@ app.add_middleware(
         "http://localhost:5173",
         "http://127.0.0.1:5173",
         "https://ai-resume-analyzer-dii.pages.dev",
+        "https://ai-resume-analyzer.harshkumarao841.workers.dev",
     ],
     allow_credentials=True,
     allow_methods=["*"],
