@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const client = axios.create({
-  baseURL: 'http://localhost:8000',
+  baseURL: 'https://resume-backend-gigu.onrender.com',
   timeout: 60000,
 })
 
